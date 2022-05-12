@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <style>
+      h2 {
+        color: #fff;
+      }
+      body {
+        color: #fff;
+        background: #19aa8d;
+        font-family: 'Robota', sans-serif;
+      }
+      .loginform{
+        width: 300px;
+        margin: 0 auto;
+        padding: 30px 0;
+        background: fff;
+      }
+      .loginform form {
+        color: #999;
+        border-radius: 10px;
+    	  margin-bottom: 15px;
+        background: #fff;
+        box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.3);
+        padding: 30px;
+      }
+      input {
+        border-radius: 5px;
+        border: 1px solid #999;
+      }
+      button {
+        margin-top: 10px;
+        background-color: #19aa8d;
+        color:#fff;
+        transition: 100ms;
+        border: none;
+        border-radius: 10px;
+        display: inline-block;
+        padding: 10px 30px;
+        font-weight: 600;
+        box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+
+      }
+
+      button:hover {
+          background-color: #fff;
+          color: #19aa8d;
+      }
+
+      button:active {
+          background-color: #19aa8d;
+          box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+          transform: translateY(4px);
+        }
+    </style>
+</head>
+<body>
+<center>
+<h2>Form Validation</h2>
+<div class="loginform">
+  <form name="myForm" action="/" method="post" onsubmit="">
+    <label for="fname">Name: </label> 
+    <br>
+    <input type="text" name="fname">
+    <br>
+    <label for="fpass">Password: </label> 
+    <br>
+    <input type="password" name="fpass">
+    <br>
+    <span id="error"></span>
+    <br>
+    <button type="button" onclick="validateForm()">SUMBIT</button>
+  </form>
+</div>
+</center>
+</body>
+
+<script>
+  function validateForm() {
+    let x = document.forms["myForm"]["fname"].value;
+    let p = document.forms["myForm"]["fpass"].value;
+    var error = document.getElementById("error");
+
+    var ch = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]+/;
+    var num = /\d/;
+  
+    if (x == "" || x==null) {
+      error.textContent = "Name must be filled out";
+      error.style.color = "red";
+      error.style.fontFamily = "Roboto, sans-serif";
+      
+    }
+    else if (x.length >= 30 || x.length <= 2 ) {
+      error.textContent = "Name can't be less than 2 characters or greater than 30 characters";
+      error.style.color = "red";
+      error.style.fontFamily = "Roboto, sans-serif";
+    }
+    else if (x.match(ch)) {
+      error.textContent = "Name can't have special characters in it!!";
+      error.style.color = "red";
+      error.style.fontFamily = "Roboto, sans-serif";
+    }
+    else if (x.match(num)) {
+      error.textContent = "Name can't have numbers in it!!";
+      error.style.color = "red";
+      error.style.fontFamily = "Roboto, sans-serif";
+    }
+  
+    else if (p == "") {
+      error.textContent = "password must be filled out";
+      error.style.color = "red";
+      error.style.fontFamily = "Roboto, sans-serif";
+      
+    }
+
+    else {
+      error.textContent = "Cheers! Submitted successfully";
+      error.style.color = "green";
+      error.style.fontFamily = "Roboto, sans-serif";
+    }
+    
+  }
+  
+</script>
+
+</html>
